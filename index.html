@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario</title>
+    <style>
+      body {
+        margin: 0;
+        background: linear-gradient(to bottom, #1573b4, #fff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .form-container {
+        background-color: #fdeaae;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .form-title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+
+      .field label {
+        font-weight: bold;
+      }
+
+      .field input,
+      .field select {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .submit-btn {
+        grid-column: span 2;
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+    <link type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    
+  </head>
+  <body>
+    <div class="form-container">
+      <div class="form-title">Solicitud de pasaporte</div>
+      <form class="form-grid">
+        <div class="field">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required />
+        </div>
+        <div class="field">
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" id="apellidos" name="apellidos" required />
+        </div>
+        <div class="field">
+          <label for="edad">Edad:</label>
+          <input type="number" id="edad" name="edad" required />
+        </div>
+        <div class="field">
+          <label for="nacionalidad">Nacionalidad:</label>
+          <select id="nacionalidad" name="nacionalidad" required>
+            <option value="" disabled selected>Seleccionar...</option>
+            <option value="nacionalidad1">Guatemalteco</option>
+            <option value="nacionalidad2">Salvadoreño</option>
+            <option value="nacionalidad">Nicaraguense</option>
+            <!-- Agrega aquí los otros 8 países -->
+          </select>
+        </div>
+        <div class="field">
+          <label for="pais">País:</label>
+          <select id="pais" name="pais" required>
+            <option value="" disabled selected>Seleccionar...</option>
+            <option value="País1">Guatemala</option>
+            <option value="País2">El salvador</option>
+            <option value="País2">Nicaragua</option>
+            <!-- Agrega aquí los otros 8 países -->
+          </select>
+        </div>
+        <div class="field">
+          <label for="ciudad">Ciudad:</label>
+          <select id="ciudad" name="ciudad" required>
+            <option value="" disabled selected>Seleccionar...</option>
+            <option value="Ciudad1">Ciudad de Guatemala</option>
+            <option value="Ciudad2">San Salvador</option>
+            <option value="Ciudad3">San Miguel</option>
+            <!-- Agrega aquí las otras 8 ciudades -->
+          </select>
+        </div>
+        <div class="field">
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" name="direccion" required />
+        </div>
+        <div class="field">
+          <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+          <input type="date"id="fecha_nacimiento" name="fecha_nacimiento"required/>
+        </div>
+        <div class="submit-btn">
+          <input class="button" name="submit"type="button"value="submit"onclick="validateForm()"/>
+        </div>
+      </form>
+    </div>
+    <script>
+    function validateForm() {
+      
+      var name=document.getElementById('nombre').value;
+      var apellido=document.getElementById('apellidos').value;
+      var edad=document.getElementById('edad').value;
+      var nacionalidad=document.getElementById('nacionalidad').value;
+      var pais=document.getElementById('pais').value;
+      var ciudad=document.getElementById('ciudad').value;
+      var direccion=document.getElementById('direccion').value;
+      var fecha_nacimiento=document.getElementById('fecha_nacimiento').value;
+      var flag = 0;
+      if(name.length < 5 || apellido.length < 5){
+        Swal.fire(
+        'Datos errores',
+        'Debe rellenar los campos de nombre y apellido con valores validos',
+        'error'
+       )
+       flag = 1;
+      }
+      if(edad < 1 || edad > 99){
+        Swal.fire(
+        'Datos errores',
+        'La edad debe ser un campo valido',
+        'error'
+       )
+       flag = 1;
+      }
+      
+      if(nacionalidad.length < 5){
+        Swal.fire(
+        'Datos errores',
+        'Debe rellenar el campo nacionalidad',
+        'error'
+       )
+       flag = 1;
+      }
+      
+      if(pais.length < 5){
+        Swal.fire(
+        'Datos errores',
+        'Debe rellenar el campo pais',
+        'error'
+       )
+       flag = 1;
+      }
+      
+      if(ciudad.length < 5){
+        Swal.fire(
+        'Datos errores',
+        'Debe rellenar el campo ciudad',
+        'error'
+       )
+       flag = 1;
+      }
+
+      if(direccion.length < 5){
+        Swal.fire(
+        'Datos errores',
+        'Debe rellenar el campo direccion',
+        'error'
+       )      
+       flag = 1;
+      }
+
+      if(fecha_nacimiento.length < 10){
+        Swal.fire(
+        'Datos errores',
+        'Debe rellenar el campo fecha de nacimiento',
+        'error'
+       )
+       flag = 1;
+       }
+      
+       if(flag == 0){
+        Swal.fire(
+        'Datos validos',
+        'Su solicitud de pasaporte ha sido agendada el dia   ' + fecha_nacimiento 
+         + '\n'
+         + ' Nombre: ' + name
+         + ' \n '+ ' Apellido: ' + apellido
+         + ' \n '+ ' Edad: ' + edad
+         + ' \n '+ ' Nacionalidad: ' + nacionalidad
+         + ' \n '+ ' Pais: ' + pais
+         + ' \n '+ ' Ciudad: ' + ciudad
+         + ' \n '+ ' Direccion: ' + direccion
+         ,
+        'success'
+       )
+       }
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>
